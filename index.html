@@ -195,3 +195,29 @@
         console.log(gateways[best_gateway]);
     }
 </script>
+
+<script>
+    function wait_and_choose_best_gateway(){
+        if (ajaxActive){
+            setTimeout(wait_and_choose_best_gateway,100);
+        } else {
+            choose_best_gateway();
+        }
+    }
+
+    function wait_and_check(){
+        if (ajaxActive){
+            setTimeout(wait_and_check,100);
+        } else {
+            test_all_speed();
+            wait_and_choose_best_gateway();
+        }
+    }
+
+    function test_all() {
+        fetch_gateways();
+        test_all_lag();
+        wait_and_check();
+    }
+</script>
+
